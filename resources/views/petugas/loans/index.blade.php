@@ -51,19 +51,21 @@
                         </td>
                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @if($loan->status === 'pending')
-                                    <form action="{{ route('admin.loans.approve', $loan->id) }}" method="POST">
+                                    <form action="{{ route('petugas.loans.approve', $loan->id) }}" method="POST">
                                         @csrf
                                         <button class="font-bold text-gray-800 border border-gray-800 px-3 py-1 rounded-sm hover:bg-gray-800 hover:text-white transition-colors">Approve</button>
                                     </form>
-                                    <form action="{{ route('admin.loans.reject', $loan->id) }}" method="POST">
+                                    <form action="{{ route('petugas.loans.reject', $loan->id) }}" method="POST">
                                         @csrf
                                         <button class="font-bold text-gray-400 border border-gray-400 px-3 py-1 rounded-sm hover:bg-gray-400 hover:text-white transition-colors">Reject</button>
                                     </form>
-                            @elseif($loan->status === 'approved' || $loan->status === 'returning')
-                                <form action="{{ route('petugas.loans.return', $loan->id) }}" method="POST" class="inline" onsubmit="return confirm('Process return?');">
+                            @elseif($loan->status === 'approved')
+                                <span class="text-gray-400 italic text-xs">Waiting for return request</span>
+                            @elseif($loan->status === 'returning')
+                                <form action="{{ route('petugas.loans.return', $loan->id) }}" method="POST" class="inline" onsubmit="return confirm('Confirm return and restore stock?');">
                                     @csrf
-                                    <button class="font-bold text-gray-800 border border-gray-800 px-3 py-1 rounded-sm hover:bg-gray-800 hover:text-white transition-colors text-xs">
-                                        {{ $loan->status === 'returning' ? 'Confirm Return' : 'Return Tool' }}
+                                    <button class="font-bold text-purple-700 border-2 border-purple-500 px-3 py-1 rounded-sm hover:bg-purple-700 hover:text-white transition-colors text-xs">
+                                        Confirm Return
                                     </button>
                                 </form>
                             @endif

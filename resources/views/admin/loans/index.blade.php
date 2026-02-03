@@ -62,11 +62,13 @@
                                         <button class="font-bold text-gray-400 border border-gray-400 px-3 py-1 rounded-sm hover:bg-gray-400 hover:text-white transition-colors">Reject</button>
                                     </form>
                                 </div>
-                            @elseif($loan->status === 'approved' || $loan->status === 'returning')
-                                <form action="{{ route('admin.loans.return', $loan->id) }}" method="POST" onsubmit="return confirm('Process return?');">
+                            @elseif($loan->status === 'approved')
+                                <span class="text-gray-400 italic text-xs">Waiting for return request</span>
+                            @elseif($loan->status === 'returning')
+                                <form action="{{ route('admin.loans.return', $loan->id) }}" method="POST" onsubmit="return confirm('Confirm return and restore stock?');">
                                     @csrf
-                                    <button class="font-bold text-gray-800 border border-gray-800 px-3 py-1 rounded-sm hover:bg-gray-800 hover:text-white transition-colors">
-                                        {{ $loan->status === 'returning' ? 'Confirm Return' : 'Return' }}
+                                    <button class="font-bold text-purple-700 border-2 border-purple-500 px-3 py-1 rounded-sm hover:bg-purple-700 hover:text-white transition-colors">
+                                        Confirm Return
                                     </button>
                                 </form>
                             @else
