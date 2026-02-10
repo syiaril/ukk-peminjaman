@@ -22,14 +22,14 @@ class RoleMiddleware
 
         $user = Auth::user();
         
-        if (in_array($user->role, $roles)) {
+        if (in_array($user->peran, $roles)) {
             return $next($request);
         }
 
         // Redirect based on role if unauthorized
-        if ($user->role === 'admin') {
+        if ($user->peran === 'admin') {
             return redirect()->route('admin.dashboard');
-        } elseif ($user->role === 'petugas') {
+        } elseif ($user->peran === 'petugas') {
             return redirect()->route('petugas.dashboard');
         } else {
             return redirect()->route('peminjam.dashboard');

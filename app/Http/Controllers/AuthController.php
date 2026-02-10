@@ -22,10 +22,10 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            $role = Auth::user()->role;
-            if ($role === 'admin') {
+            $peran = Auth::user()->peran;
+            if ($peran === 'admin') {
                 return redirect()->intended('/admin/dashboard');
-            } elseif ($role === 'petugas') {
+            } elseif ($peran === 'petugas') {
                 return redirect()->intended('/petugas/dashboard');
             } else {
                 return redirect()->intended('/peminjam/dashboard');
@@ -33,7 +33,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
         ])->onlyInput('email');
     }
 

@@ -18,7 +18,7 @@
                         </a>
                     </div>
                     <div class="flex items-center gap-6">
-                        <span class="text-xs font-medium text-gray-500 uppercase tracking-wider">{{ Auth::user()->name }} | {{ Auth::user()->role }}</span>
+                        <span class="text-xs font-medium text-gray-500 uppercase tracking-wider">{{ Auth::user()->nama }} | {{ Auth::user()->peran }}</span>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="text-xs font-bold text-gray-400 hover:text-red-500 transition-colors uppercase tracking-widest">

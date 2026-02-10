@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Pengguna;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -15,27 +15,27 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Admin
-        User::create([
-            'name' => 'Administrator',
+        \App\Models\Pengguna::create([
+            'nama' => 'Administrator',
             'email' => 'admin@admin.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
+            'kata_sandi' => Hash::make('password'),
+            'peran' => 'admin',
         ]);
 
         // Petugas
-        User::create([
-            'name' => 'Petugas 1',
+        \App\Models\Pengguna::create([
+            'nama' => 'Petugas 1',
             'email' => 'petugas@petugas.com',
-            'password' => Hash::make('password'),
-            'role' => 'petugas',
+            'kata_sandi' => Hash::make('password'),
+            'peran' => 'petugas',
         ]);
 
         // Peminjam
-        User::create([
-            'name' => 'Siswa Peminjam',
+        \App\Models\Pengguna::create([
+            'nama' => 'Siswa Peminjam',
             'email' => 'siswa@siswa.com',
-            'password' => Hash::make('password'),
-            'role' => 'peminjam',
+            'kata_sandi' => Hash::make('password'),
+            'peran' => 'peminjam',
         ]);
     }
 }

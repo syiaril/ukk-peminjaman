@@ -8,18 +8,18 @@
         
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
             <div class="border border-gray-200 border-l-4 border-l-emerald-400 bg-emerald-50/20 p-6 rounded-md hover:bg-emerald-50 transition-colors shadow-sm">
-                <h3 class="font-bold text-gray-900 mb-1 tracking-wider">Borrow Tools</h3>
-                <p class="text-gray-500 mb-4 text-xs">Browse catalog and start a request.</p>
-                <a href="{{ route('peminjam.tools.index') }}" class="font-bold text-emerald-600 hover:underline">
-                    Catalog &rarr;
+                <h3 class="font-bold text-gray-900 mb-1 tracking-wider">Pinjam Alat</h3>
+                <p class="text-gray-500 mb-4 text-xs">Lihat katalog dan ajukan peminjaman.</p>
+                <a href="{{ route('peminjam.alat.index') }}" class="font-bold text-emerald-600 hover:underline">
+                    Katalog &rarr;
                 </a>
             </div>
 
             <div class="border border-gray-200 border-l-4 border-l-emerald-400 bg-emerald-50/20 p-6 rounded-md hover:bg-emerald-50 transition-colors shadow-sm">
-                <h3 class="font-bold text-gray-900 mb-1 tracking-wider">My Loans</h3>
-                <p class="text-gray-500 mb-4 text-xs">Check status and return tools.</p>
-                <a href="{{ route('peminjam.loans.index') }}" class="font-bold text-emerald-600 hover:underline">
-                    History &rarr;
+                <h3 class="font-bold text-gray-900 mb-1 tracking-wider">Peminjaman Saya</h3>
+                <p class="text-gray-500 mb-4 text-xs">Cek status dan kembalikan alat.</p>
+                <a href="{{ route('peminjam.peminjaman.index') }}" class="font-bold text-emerald-600 hover:underline">
+                    Riwayat &rarr;
                 </a>
             </div>
         </div>
