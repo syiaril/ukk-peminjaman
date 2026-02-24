@@ -11,10 +11,18 @@ use Illuminate\Support\Facades\DB;
 class PeminjamanController extends Controller
 {
     // Untuk Peminjam: Lihat Katalog
-    public function katalog()
+    public function katalog(Request $request)
     {
-        $alat = Alat::where('stok', '>', 0)->get();
-        return view('peminjam.alat.index', compact('alat'));
+        $query = Alat::with('kategori')->where('stok', '>', 0);
+
+        if ($request->filled('kategori_id')) {
+            $query->where('kategori_id', $request->kategori_id);
+        }
+
+        $alat = $query->paginate(12)->appends($request->query());
+        $kategoriList = \App\Models\Kategori::orderBy('nama_kategori')->get();
+
+        return view('peminjam.alat.index', compact('alat', 'kategoriList'));
     }
 
     // Untuk Peminjam: Ajukan Peminjaman
@@ -56,21 +64,21 @@ class PeminjamanController extends Controller
     // Untuk Peminjam: Lihat Peminjaman Saya
     public function peminjamanSaya()
     {
-        $peminjaman = Peminjaman::where('pengguna_id', Auth::id())->with('alat')->orderBy('created_at', 'desc')->get();
+        $peminjaman = Peminjaman::where('pengguna_id', Auth::id())->with('alat')->orderBy('created_at', 'desc')->paginate(10);
         return view('peminjam.peminjaman.index', compact('peminjaman'));
     }
 
     // Untuk Admin: Lihat Semua Peminjaman
     public function adminIndex()
     {
-        $peminjaman = Peminjaman::with(['pengguna', 'alat'])->orderBy('created_at', 'desc')->get();
+        $peminjaman = Peminjaman::with(['pengguna', 'alat'])->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.peminjaman.index', compact('peminjaman'));
     }
 
     // Untuk Petugas: Lihat Semua Peminjaman
     public function index()
     {
-        $peminjaman = Peminjaman::with(['pengguna', 'alat'])->orderBy('created_at', 'desc')->get();
+        $peminjaman = Peminjaman::with(['pengguna', 'alat'])->orderBy('created_at', 'desc')->paginate(10);
         return view('petugas.peminjaman.index', compact('peminjaman'));
     }
 

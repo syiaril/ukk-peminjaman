@@ -50,6 +50,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="mt-4">
+            {{ $kategori->links('vendor.pagination.custom') }}
+        </div>
     </div>
 </div>
 @endsection

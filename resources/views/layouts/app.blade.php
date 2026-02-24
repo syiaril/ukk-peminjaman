@@ -14,7 +14,7 @@
                 <div class="flex justify-between h-14">
                     <div class="flex items-center">
                         <a href="{{ url('/') }}" class="font-bold text-gray-800 text-lg tracking-tight">
-                            Tool Lending
+                            Peminjaman Alat
                         </a>
                     </div>
                     <div class="flex items-center gap-6">
@@ -22,7 +22,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="text-xs font-bold text-gray-400 hover:text-red-500 transition-colors uppercase tracking-widest">
-                                Logout
+                                Keluar
                             </button>
                         </form>
                     </div>

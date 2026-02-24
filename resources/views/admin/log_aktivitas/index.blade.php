@@ -44,7 +44,7 @@
         </div>
         
         <div class="mt-4">
-            {{ $log_aktivitas->links() }}
+            {{ $log_aktivitas->links('vendor.pagination.custom') }}
         </div>
     </div>
 </div>

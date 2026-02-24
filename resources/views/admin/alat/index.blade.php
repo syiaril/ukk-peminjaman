@@ -6,7 +6,8 @@
         <div class="mb-6 flex justify-between items-center">
             <h2 class="text-2xl font-bold">Manajemen Alat</h2>
             <div class="flex items-center gap-6">
-                 <a href="{{ route('admin.alat.create') }}" class="inline-flex items-center px-4 py-2 border border-black rounded text-xs font-bold hover:bg-black hover:text-white transition-colors">
+                <a href="{{ route('admin.kategori.index') }}" class="inline-flex text-blue-400 items-center px-4 py-2 border border-blue-400 rounded text-xs font-bold hover:bg-blue-400 hover:text-white transition-colors">Kategori</a>
+                <a href="{{ route('admin.alat.create') }}" class="inline-flex items-center px-4 py-2 border border-black rounded text-xs font-bold hover:bg-black hover:text-white transition-colors">
                     Tambah Alat
                 </a>
                 <a href="{{ route('admin.dashboard') }}" class="text-gray-500 hover:text-gray-800 flex items-center gap-1 text-sm">
@@ -69,7 +70,7 @@
             </tbody>
         </table>
         <div class="mt-4">
-             {{ $alat->links() }}
+             {{ $alat->links('vendor.pagination.custom') }}
         </div>
     </div>
 </div>

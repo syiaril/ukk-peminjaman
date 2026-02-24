@@ -61,7 +61,7 @@
             </tbody>
         </table>
         <div class="mt-4">
-            {{ $pengguna->links() }}
+            {{ $pengguna->links('vendor.pagination.custom') }}
         </div>
     </div>
 </div>

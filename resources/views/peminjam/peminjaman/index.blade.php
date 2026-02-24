@@ -61,6 +61,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="mt-4">
+            {{ $peminjaman->links('vendor.pagination.custom') }}
+        </div>
     </div>
 </div>
 @endsection
