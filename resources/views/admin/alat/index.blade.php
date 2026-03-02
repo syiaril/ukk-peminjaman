@@ -1,3 +1,11 @@
+{{--
+    Halaman Daftar Alat (admin/alat/index.blade.php)
+
+    Menampilkan tabel semua alat yang ada di sistem.
+    Fitur: foto alat, nama, kategori, stok, aksi (edit/hapus).
+    Tombol navigasi: ke halaman Kategori, Tambah Alat, dan Kembali ke Beranda.
+    Data dipaginasi menggunakan komponen paginasi kustom.
+--}}
 @extends('layouts.app')
 
 @section('content')

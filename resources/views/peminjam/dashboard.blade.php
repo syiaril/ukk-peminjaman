@@ -1,3 +1,11 @@
+{{--
+    Dashboard Peminjam (peminjam/dashboard.blade.php)
+
+    Halaman utama setelah peminjam (siswa/guru) berhasil login.
+    Menampilkan 2 kartu navigasi:
+    1. Pinjam Alat - Lihat katalog dan ajukan peminjaman baru
+    2. Peminjaman Saya - Cek status peminjaman dan ajukan pengembalian
+--}}
 @extends('layouts.app')
 
 @section('content')

@@ -1,3 +1,10 @@
+{{--
+    Halaman Edit Kategori (admin/kategori/edit.blade.php)
+
+    Form untuk mengedit nama kategori yang sudah ada.
+    Field diisi otomatis dengan nama kategori saat ini.
+    Data dikirim ke route 'admin.kategori.update' dengan method PUT.
+--}}
 @extends('layouts.app')
 
 @section('content')

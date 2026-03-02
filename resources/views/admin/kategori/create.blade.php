@@ -1,3 +1,10 @@
+{{--
+    Halaman Tambah Kategori (admin/kategori/create.blade.php)
+
+    Form sederhana untuk menambahkan kategori alat baru.
+    Hanya memiliki satu field: Nama Kategori (wajib diisi).
+    Data dikirim ke route 'admin.kategori.store' dengan method POST.
+--}}
 @extends('layouts.app')
 
 @section('content')

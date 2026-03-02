@@ -1,3 +1,11 @@
+{{--
+    Halaman Daftar Kategori (admin/kategori/index.blade.php)
+
+    Menampilkan tabel semua kategori alat yang ada di sistem.
+    Fitur: ID, nama kategori, aksi (edit/hapus).
+    Tombol navigasi: Tambah Kategori dan Kembali ke Beranda.
+    Jika kategori masih memiliki alat, tidak bisa dihapus (validasi di controller).
+--}}
 @extends('layouts.app')
 
 @section('content')
@@ -14,7 +22,7 @@
                 </a>
             </div>
         </div>
-        
+
         <table class="min-w-full leading-normal">
             <thead>
                 <tr>

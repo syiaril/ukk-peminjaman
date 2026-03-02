@@ -1,66 +1,123 @@
 <?php
 
+/**
+ * ============================================================
+ * ROUTES WEB - Konfigurasi Routing Aplikasi Peminjaman Alat
+ * ============================================================
+ * 
+ * File ini mendefinisikan semua URL/rute yang bisa diakses di aplikasi.
+ * Rute dikelompokkan berdasarkan peran pengguna dan dilindungi oleh middleware.
+ * 
+ * Struktur rute:
+ * 1. Rute Publik (Guest) - Halaman login
+ * 2. Rute Admin - Kelola pengguna, kategori, alat, peminjaman, log
+ * 3. Rute Petugas - Kelola peminjaman dan laporan
+ * 4. Rute Peminjam - Lihat katalog, ajukan peminjaman, lihat riwayat
+ */
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
+// ============================================================
+// RUTE UTAMA
+// ============================================================
+// Redirect halaman utama (/) ke halaman login
 Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Auth Routes
+// ============================================================
+// RUTE AUTENTIKASI (Login & Logout)
+// ============================================================
+// Rute login hanya bisa diakses oleh pengguna yang BELUM login (guest)
 Route::middleware('guest')->group(function () {
-    Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [AuthController::class, 'login']);
+    Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');    // Tampilkan form login
+    Route::post('login', [AuthController::class, 'login']);                           // Proses login
 });
+
+// Rute logout hanya bisa diakses oleh pengguna yang SUDAH login (auth)
 Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-// Admin Routes
+// ============================================================
+// RUTE ADMIN
+// ============================================================
+// Semua rute admin dilindungi oleh:
+// - middleware 'auth': harus sudah login
+// - middleware 'peran:admin': hanya peran admin yang bisa mengakses
+// - prefix 'admin': semua URL diawali dengan /admin/...
+// - name 'admin.': semua nama rute diawali dengan admin.
 Route::middleware(['auth', 'peran:admin'])->prefix('admin')->name('admin.')->group(function () {
+    
+    // Dashboard Admin - Halaman utama setelah admin login
     Route::get('/dashboard', function () {
-        return view('admin.dashboard'); // View file name might still be dashboard? Or rename to beranda? Let's assume view directory rename later.
-    })->name('dashboard'); // Route name dashboard is standard, or beranda? Let's use beranda if we go full Indo? But redirects usually look for dashboard. Let's keep route name dashboard for now or update redirects in AuthController.
-    // Wait, AuthController redirects to /admin/dashboard. So I should match that.
-    // If I change URL `admin/dashboard` to `admin/beranda`, I must update AuthController too.
-    // I already checked AuthController, it redirects to `/admin/dashboard`.
-    // I should update AuthController to `/admin/beranda` if I change this.
-    // The user said "semua migration dan lainnya... command atau keterangan...".
-    // I'll keep it simple: Use `/dashboard` URL for now unless instructed, OR update AuthController.
-    // But `Route::resource` for `pengguna` creates `/pengguna`.
-    // Let's use Indonesian URLs where easy. `users` -> `pengguna`. `dashboard` -> `beranda` is good. I'll update AuthController later.
+        return view('admin.dashboard');
+    })->name('dashboard');
 
+    // CRUD Pengguna - Kelola data pengguna (admin, petugas, peminjam)
+    // Otomatis membuat rute: index, create, store, show, edit, update, destroy
     Route::resource('pengguna', \App\Http\Controllers\PenggunaController::class);
+
+    // CRUD Kategori - Kelola kategori alat (Lab IPA, Olahraga, Musik, dll)
     Route::resource('kategori', \App\Http\Controllers\KategoriController::class);
+
+    // CRUD Alat - Kelola data alat/peralatan sekolah
     Route::resource('alat', \App\Http\Controllers\AlatController::class);
+
+    // Log Aktivitas - Lihat riwayat semua aktivitas di sistem (read-only)
     Route::get('/log-aktivitas', [\App\Http\Controllers\LogAktivitasController::class, 'index'])->name('log_aktivitas.index');
 
-    // Admin Loan Management
-    Route::get('/peminjaman', [\App\Http\Controllers\PeminjamanController::class, 'adminIndex'])->name('peminjaman.index');
-    Route::post('/peminjaman/{peminjaman}/setujui', [\App\Http\Controllers\PeminjamanController::class, 'approve'])->name('peminjaman.approve');
-    Route::post('/peminjaman/{peminjaman}/tolak', [\App\Http\Controllers\PeminjamanController::class, 'reject'])->name('peminjaman.reject');
-    Route::post('/peminjaman/{peminjaman}/kembali', [\App\Http\Controllers\PeminjamanController::class, 'returnTool'])->name('peminjaman.return');
+    // Manajemen Peminjaman oleh Admin
+    Route::get('/peminjaman', [\App\Http\Controllers\PeminjamanController::class, 'adminIndex'])->name('peminjaman.index');           // Lihat semua peminjaman
+    Route::post('/peminjaman/{peminjaman}/setujui', [\App\Http\Controllers\PeminjamanController::class, 'approve'])->name('peminjaman.approve');  // Setujui peminjaman
+    Route::post('/peminjaman/{peminjaman}/tolak', [\App\Http\Controllers\PeminjamanController::class, 'reject'])->name('peminjaman.reject');      // Tolak peminjaman
+    Route::post('/peminjaman/{peminjaman}/kembali', [\App\Http\Controllers\PeminjamanController::class, 'returnTool'])->name('peminjaman.return'); // Proses pengembalian
 });
 
-// Petugas Routes
+// ============================================================
+// RUTE PETUGAS
+// ============================================================
+// Semua rute petugas dilindungi oleh:
+// - middleware 'auth': harus sudah login
+// - middleware 'peran:petugas': hanya peran petugas yang bisa mengakses
+// - prefix 'petugas': semua URL diawali dengan /petugas/...
 Route::middleware(['auth', 'peran:petugas'])->prefix('petugas')->name('petugas.')->group(function () {
+    
+    // Dashboard Petugas - Halaman utama setelah petugas login
     Route::get('/dashboard', function () {
         return view('petugas.dashboard');
     })->name('dashboard');
     
-    Route::get('/peminjaman', [\App\Http\Controllers\PeminjamanController::class, 'index'])->name('peminjaman.index');
-    Route::get('/laporan', [\App\Http\Controllers\PeminjamanController::class, 'laporan'])->name('laporan');
-    Route::post('/peminjaman/{peminjaman}/setujui', [\App\Http\Controllers\PeminjamanController::class, 'approve'])->name('peminjaman.approve');
-    Route::post('/peminjaman/{peminjaman}/tolak', [\App\Http\Controllers\PeminjamanController::class, 'reject'])->name('peminjaman.reject');
-    Route::post('/peminjaman/{peminjaman}/kembali', [\App\Http\Controllers\PeminjamanController::class, 'returnTool'])->name('peminjaman.return');
+    // Kelola Peminjaman
+    Route::get('/peminjaman', [\App\Http\Controllers\PeminjamanController::class, 'index'])->name('peminjaman.index');                // Lihat semua peminjaman
+    Route::get('/laporan', [\App\Http\Controllers\PeminjamanController::class, 'laporan'])->name('laporan');                          // Halaman cetak laporan
+    Route::post('/peminjaman/{peminjaman}/setujui', [\App\Http\Controllers\PeminjamanController::class, 'approve'])->name('peminjaman.approve');  // Setujui peminjaman
+    Route::post('/peminjaman/{peminjaman}/tolak', [\App\Http\Controllers\PeminjamanController::class, 'reject'])->name('peminjaman.reject');      // Tolak peminjaman
+    Route::post('/peminjaman/{peminjaman}/kembali', [\App\Http\Controllers\PeminjamanController::class, 'returnTool'])->name('peminjaman.return'); // Proses pengembalian
 });
 
-// Peminjam Routes
+// ============================================================
+// RUTE PEMINJAM
+// ============================================================
+// Semua rute peminjam dilindungi oleh:
+// - middleware 'auth': harus sudah login
+// - middleware 'peran:peminjam': hanya peran peminjam yang bisa mengakses
+// - prefix 'peminjam': semua URL diawali dengan /peminjam/...
 Route::middleware(['auth', 'peran:peminjam'])->prefix('peminjam')->name('peminjam.')->group(function () {
+    
+    // Dashboard Peminjam - Halaman utama setelah peminjam login
     Route::get('/dashboard', function () {
         return view('peminjam.dashboard');
     })->name('dashboard');
 
+    // Katalog Alat - Lihat daftar alat yang tersedia untuk dipinjam
     Route::get('/katalog', [\App\Http\Controllers\PeminjamanController::class, 'katalog'])->name('alat.index');
+
+    // Ajukan Peminjaman - Kirim form pengajuan peminjaman baru
     Route::post('/peminjaman', [\App\Http\Controllers\PeminjamanController::class, 'store'])->name('peminjaman.store');
+
+    // Riwayat Peminjaman - Lihat daftar peminjaman milik pengguna yang login
     Route::get('/peminjaman-saya', [\App\Http\Controllers\PeminjamanController::class, 'peminjamanSaya'])->name('peminjaman.index');
+
+    // Ajukan Pengembalian - Peminjam mengajukan pengembalian alat ke petugas
     Route::post('/peminjaman/{peminjaman}/ajukan-pengembalian', [\App\Http\Controllers\PeminjamanController::class, 'requestReturn'])->name('peminjaman.return-request');
 });

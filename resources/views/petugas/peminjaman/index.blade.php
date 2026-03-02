@@ -1,3 +1,11 @@
+{{--
+    Halaman Manajemen Peminjaman - Petugas (petugas/peminjaman/index.blade.php)
+
+    Menampilkan tabel semua peminjaman untuk dikelola oleh petugas.
+    Fitur: data peminjam, alat, tanggal, status (badge warna), dan aksi.
+    Petugas bisa: menyetujui, menolak, dan mengkonfirmasi pengembalian alat.
+    Tersedia tombol "Cetak Laporan" untuk membuka halaman cetak di tab baru.
+--}}
 @extends('layouts.app')
 
 @section('content')

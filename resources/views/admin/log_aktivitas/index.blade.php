@@ -1,3 +1,11 @@
+{{--
+    Halaman Log Aktivitas (admin/log_aktivitas/index.blade.php)
+
+    Menampilkan riwayat semua aktivitas yang terjadi di sistem (audit trail).
+    Kolom: Waktu, Pengguna, Aksi, Deskripsi.
+    Data diurutkan dari yang terbaru dan dipaginasi 20 per halaman.
+    Log dicatat otomatis oleh Stored Procedure saat persetujuan dan pengembalian.
+--}}
 @extends('layouts.app')
 
 @section('content')

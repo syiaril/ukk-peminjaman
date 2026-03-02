@@ -1,5 +1,25 @@
 <?php
 
+/**
+ * DatabaseSeeder
+ * 
+ * Seeder utama untuk mengisi database dengan data dummy/awal.
+ * Dijalankan dengan perintah: php artisan db:seed
+ * 
+ * Data yang dibuat:
+ * 1. Pengguna: 24 total (1 Admin, 3 Petugas, 20 Peminjam)
+ * 2. Kategori: 8 kategori alat sekolah
+ * 3. Alat: 40 alat dari berbagai kategori
+ * 4. Peminjaman: 50 data dengan berbagai status
+ * 5. Log Aktivitas: 30+ catatan aktivitas sistem
+ * 
+ * Semua pengguna menggunakan password: 'password'
+ * 
+ * PENTING: Seeder ini menginsert data peminjaman langsung ke tabel
+ * (bypass trigger) agar stok tidak berubah dua kali. Stok dikurangi
+ * secara manual untuk peminjaman yang statusnya 'disetujui' dan 'sedang_dikembalikan'.
+ */
+
 namespace Database\Seeders;
 
 use App\Models\Pengguna;
@@ -15,7 +35,10 @@ use Carbon\Carbon;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Mengisi database dengan data dummy untuk pengembangan dan pengujian.
+     * 
+     * Urutan pengisian data mengikuti urutan dependensi foreign key:
+     * Pengguna -> Kategori -> Alat -> Peminjaman -> Log Aktivitas
      */
     public function run(): void
     {

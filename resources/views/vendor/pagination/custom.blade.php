@@ -1,3 +1,16 @@
+{{--
+    Komponen Paginasi Kustom (vendor/pagination/custom.blade.php)
+
+    Override tampilan paginasi bawaan Laravel dengan desain shadcn UI style.
+    Digunakan di semua halaman yang memiliki paginasi dengan memanggil:
+    {{ $data->links('vendor.pagination.custom') }}
+    
+    Fitur:
+    - Info teks: "Menampilkan X-Y dari Z data"
+    - Tombol navigasi: Previous, halaman, Next
+    - Halaman aktif ditandai dengan background hitam
+    - Tombol disabled saat di halaman pertama/terakhir
+--}}
 @if ($paginator->hasPages())
 <nav role="navigation" aria-label="Pagination" class="flex items-center justify-between mt-6">
     {{-- Info text --}}

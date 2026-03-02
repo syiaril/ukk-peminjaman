@@ -1,3 +1,11 @@
+{{--
+    Halaman Edit Pengguna (admin/pengguna/edit.blade.php)
+
+    Form untuk mengedit data pengguna yang sudah ada.
+    Field diisi otomatis dengan data pengguna saat ini.
+    Password bersifat opsional - jika dikosongkan, password lama tetap digunakan.
+    Data dikirim ke route 'admin.pengguna.update' dengan method PUT.
+--}}
 @extends('layouts.app')
 
 @section('content')

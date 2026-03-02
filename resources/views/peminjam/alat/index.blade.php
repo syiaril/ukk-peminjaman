@@ -1,3 +1,12 @@
+{{--
+    Halaman Katalog Alat - Peminjam (peminjam/alat/index.blade.php)
+
+    Menampilkan daftar alat yang tersedia untuk dipinjam dalam format grid (kartu).
+    Setiap kartu menampilkan: foto, nama, kategori, deskripsi, stok,
+    form pengajuan peminjaman (tanggal pinjam + durasi hari).
+    Mendukung filter berdasarkan kategori melalui dropdown.
+    Hanya alat dengan stok > 0 yang ditampilkan.
+--}}
 @extends('layouts.app')
 
 @section('content')

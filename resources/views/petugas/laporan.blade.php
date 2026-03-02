@@ -1,3 +1,11 @@
+{{--
+    Halaman Cetak Laporan Peminjaman (petugas/laporan.blade.php)
+
+    Halaman standalone (tanpa layout utama) untuk mencetak laporan peminjaman.
+    Otomatis membuka dialog print saat halaman dimuat (onload="window.print()").
+    Elemen dengan class "no-print" akan disembunyikan saat dicetak.
+    Menampilkan: tabel semua peminjaman, tanggal cetak, dan tanda tangan petugas.
+--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

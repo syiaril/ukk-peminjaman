@@ -1,3 +1,10 @@
+{{--
+    Dashboard Petugas (petugas/dashboard.blade.php)
+
+    Halaman utama setelah petugas berhasil login.
+    Menampilkan kartu navigasi menuju fitur Manajemen Peminjaman
+    untuk memverifikasi alat dan memproses transaksi peminjaman/pengembalian.
+--}}
 @extends('layouts.app')
 
 @section('content')

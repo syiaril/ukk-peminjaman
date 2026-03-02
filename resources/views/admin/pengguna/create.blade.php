@@ -1,3 +1,10 @@
+{{--
+    Halaman Tambah Pengguna (admin/pengguna/create.blade.php)
+
+    Form untuk menambahkan pengguna baru ke sistem.
+    Field: Nama, Email, Kata Sandi, Peran (Peminjam/Petugas/Admin).
+    Data dikirim ke route 'admin.pengguna.store' dengan method POST.
+--}}
 @extends('layouts.app')
 
 @section('content')

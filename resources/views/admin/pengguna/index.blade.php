@@ -1,3 +1,11 @@
+{{--
+    Halaman Daftar Pengguna (admin/pengguna/index.blade.php)
+
+    Menampilkan tabel semua pengguna sistem (admin, petugas, peminjam).
+    Fitur: nama, email, peran (dengan badge warna), aksi (edit/hapus).
+    Tombol hapus tidak ditampilkan untuk pengguna yang sedang login sendiri
+    (mencegah admin menghapus akun sendiri).
+--}}
 @extends('layouts.app')
 
 @section('content')

@@ -1,3 +1,14 @@
+{{--
+    Halaman Manajemen Peminjaman - Admin (admin/peminjaman/index.blade.php)
+
+    Menampilkan tabel semua peminjaman dari semua pengguna.
+    Fitur: data peminjam, alat, tanggal, status (dengan badge warna), denda, dan aksi.
+    Aksi yang tersedia berdasarkan status:
+    - Diajukan: tombol Setujui / Tolak
+    - Disetujui: menunggu pengajuan pengembalian dari peminjam
+    - Sedang Dikembalikan: tombol Konfirmasi Pengembalian (menghitung denda otomatis)
+    - Dikembalikan/Ditolak: tidak ada aksi (selesai)
+--}}
 @extends('layouts.app')
 
 @section('content')

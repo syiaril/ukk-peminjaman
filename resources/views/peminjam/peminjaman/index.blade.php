@@ -1,3 +1,12 @@
+{{--
+    Halaman Riwayat Peminjaman Saya (peminjam/peminjaman/index.blade.php)
+
+    Menampilkan tabel riwayat peminjaman milik peminjam yang sedang login.
+    Kolom: Alat, Tanggal Pinjam, Wajib Kembali, Status, Denda, Aksi.
+    Peminjam bisa mengajukan pengembalian jika status = 'disetujui'.
+    Status ditampilkan dengan badge warna yang berbeda-beda.
+    Denda ditampilkan dalam warna merah jika > 0.
+--}}
 @extends('layouts.app')
 
 @section('content')
