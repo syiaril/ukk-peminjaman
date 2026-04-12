@@ -24,6 +24,7 @@
                 <thead>
                     <tr>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Alat</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Jumlah</th>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal Pinjam</th>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Wajib Kembali</th>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
@@ -35,6 +36,7 @@
                     @foreach($peminjaman as $p)
                     <tr>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $p->alat->nama_alat }}</td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm font-bold">{{ $p->jumlah }}</td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $p->tanggal_pinjam }}</td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $p->tanggal_wajib_kembali }}</td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-xs">

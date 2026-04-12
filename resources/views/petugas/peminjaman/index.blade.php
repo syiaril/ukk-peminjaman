@@ -43,6 +43,9 @@
                         </td>
                          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             {{ $p->alat->nama_alat }}
+                            @if($p->jumlah > 1)
+                                <span class="text-xs font-bold text-blue-600">&times;{{ $p->jumlah }}</span>
+                            @endif
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div class="text-xs">Pinjam: {{ $p->tanggal_pinjam }}</div>

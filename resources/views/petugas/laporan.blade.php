@@ -36,6 +36,7 @@
                 <th>No</th>
                 <th>Peminjam</th>
                 <th>Alat</th>
+                <th>Jumlah</th>
                 <th>Tgl Pinjam</th>
                 <th>Tgl Kembali (Est)</th>
                 <th>Tgl Kembali (Real)</th>
@@ -49,6 +50,7 @@
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $p->pengguna->nama }}</td>
                 <td>{{ $p->alat->nama_alat }}</td>
+                <td>{{ $p->jumlah }}</td>
                 <td>{{ $p->tanggal_pinjam }}</td>
                 <td>{{ $p->tanggal_wajib_kembali }}</td>
                 <td>{{ $p->tanggal_kembali ?? '-' }}</td>

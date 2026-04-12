@@ -37,6 +37,7 @@ class Peminjaman extends Model
      * 
      * - pengguna_id: ID peminjam (foreign key ke tabel pengguna)
      * - alat_id: ID alat yang dipinjam (foreign key ke tabel alat)
+     * - jumlah: Jumlah unit alat yang dipinjam (default 1)
      * - tanggal_pinjam: Tanggal mulai peminjaman
      * - tanggal_wajib_kembali: Batas waktu pengembalian (dihitung dari tanggal_pinjam + durasi)
      * - tanggal_kembali: Tanggal alat dikembalikan (null jika belum dikembalikan)
@@ -46,6 +47,7 @@ class Peminjaman extends Model
     protected $fillable = [
         'pengguna_id',
         'alat_id',
+        'jumlah',
         'tanggal_pinjam',
         'tanggal_wajib_kembali',
         'tanggal_kembali',

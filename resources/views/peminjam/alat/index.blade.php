@@ -59,12 +59,16 @@
                     <input type="hidden" name="alat_id" value="{{ $a->id }}">
                     
                     <div class="mb-2">
+                        <label class="block text-xs font-bold mb-1">Jumlah</label>
+                        <input type="number" name="jumlah" min="1" max="{{ $a->stok }}" value="1" class="w-full border rounded px-2 py-1" required>
+                    </div>
+                    <div class="mb-2">
                         <label class="block text-xs font-bold mb-1">Tanggal Pinjam</label>
                         <input type="date" name="tanggal_pinjam" value="{{ date('Y-m-d') }}" class="w-full border rounded px-2 py-1" required>
                     </div>
                      <div class="mb-4">
                         <label class="block text-xs font-bold mb-1">Durasi (Hari)</label>
-                        <input type="number" name="durasi" min="1" max="14" value="1" class="w-full border rounded px-2 py-1" required>
+                        <input type="number" name="durasi" min="1" max="3" value="1" class="w-full border rounded px-2 py-1" required>
                     </div>
                     
                     <button type="submit" class="w-full bg-blue-600 text-white rounded py-2 hover:bg-blue-700">

@@ -50,8 +50,9 @@ class PeminjamanController extends Controller
      * 
      * Validasi:
      * - Alat harus valid dan stok tersedia
+     * - Jumlah harus 1 atau lebih, tidak boleh melebihi stok
      * - Tanggal pinjam tidak boleh sebelum hari ini
-     * - Durasi peminjaman 1-14 hari (maksimal 2 minggu)
+     * - Durasi peminjaman 1-3 hari (maksimal 3 hari)
      * 
      * Tanggal wajib kembali dihitung otomatis: tanggal_pinjam + durasi.
      * Status awal peminjaman: 'diajukan' (menunggu persetujuan petugas).
@@ -61,23 +62,27 @@ class PeminjamanController extends Controller
         // Validasi data input peminjaman
         $request->validate([
             'alat_id' => 'required|exists:alat,id',                    // Alat harus valid
+            'jumlah' => 'required|integer|min:1',                      // Jumlah minimal 1
             'tanggal_pinjam' => 'required|date|after_or_equal:today',  // Tanggal tidak boleh lampau
-            'durasi' => 'required|integer|min:1|max:14',               // Durasi 1-14 hari
+            'durasi' => 'required|integer|min:1|max:3',                // Durasi 1-3 hari
         ], [
             // Pesan error kustom dalam Bahasa Indonesia
             'alat_id.required' => 'Alat wajib dipilih.',
             'alat_id.exists' => 'Alat tidak valid.',
+            'jumlah.required' => 'Jumlah wajib diisi.',
+            'jumlah.min' => 'Jumlah minimal 1.',
             'tanggal_pinjam.required' => 'Tanggal pinjam wajib diisi.',
             'tanggal_pinjam.after_or_equal' => 'Tanggal pinjam tidak boleh kurang dari hari ini.',
             'durasi.required' => 'Durasi wajib diisi.',
             'durasi.min' => 'Durasi minimal 1 hari.',
-            'durasi.max' => 'Durasi maksimal 14 hari.',
+            'durasi.max' => 'Durasi maksimal 3 hari.',
         ]);
 
-        // Cek apakah stok alat masih tersedia
+        // Cek apakah stok alat mencukupi untuk jumlah yang diminta
         $alat = Alat::find($request->alat_id);
-        if ($alat->stok < 1) {
-            return back()->with('error', 'Stok alat habis.');
+        $jumlah = (int) $request->jumlah;
+        if ($alat->stok < $jumlah) {
+            return back()->with('error', 'Stok alat tidak mencukupi. Stok tersedia: ' . $alat->stok);
         }
 
         // Hitung tanggal wajib kembali berdasarkan tanggal pinjam + durasi
@@ -88,6 +93,7 @@ class PeminjamanController extends Controller
         Peminjaman::create([
             'pengguna_id' => Auth::id(),                    // ID peminjam yang sedang login
             'alat_id' => $request->alat_id,                // ID alat yang dipinjam
+            'jumlah' => $jumlah,                           // Jumlah alat yang dipinjam
             'tanggal_pinjam' => $tanggalPinjam,            // Tanggal mulai pinjam
             'tanggal_wajib_kembali' => $tanggalWajibKembali, // Batas waktu pengembalian
             'status' => 'diajukan',                        // Status awal: menunggu persetujuan
@@ -153,13 +159,13 @@ class PeminjamanController extends Controller
      * 
      * Validasi:
      * - Status peminjaman harus 'diajukan'
-     * - Stok alat harus masih tersedia (>= 1)
+     * - Stok alat harus mencukupi (>= jumlah yang dipinjam)
      * 
      * Proses persetujuan menggunakan Stored Procedure 'proses_persetujuan_peminjaman'
      * yang secara otomatis:
      * 1. Mengubah status menjadi 'disetujui'
      * 2. Mencatat log aktivitas
-     * 3. Trigger database otomatis mengurangi stok alat
+     * 3. Trigger database otomatis mengurangi stok alat sesuai jumlah
      */
     public function approve(Peminjaman $peminjaman)
     {
@@ -168,9 +174,9 @@ class PeminjamanController extends Controller
             return back()->with('error', 'Peminjaman tidak dalam status diajukan.');
         }
 
-        // Cek apakah stok alat masih mencukupi
-        if ($peminjaman->alat->stok < 1) {
-             return back()->with('error', 'Stok alat tidak mencukupi.');
+        // Cek apakah stok alat mencukupi untuk jumlah yang dipinjam
+        if ($peminjaman->alat->stok < $peminjaman->jumlah) {
+             return back()->with('error', 'Stok alat tidak mencukupi. Stok tersedia: ' . $peminjaman->alat->stok . ', dibutuhkan: ' . $peminjaman->jumlah);
         }
 
         // Panggil Stored Procedure untuk proses persetujuan

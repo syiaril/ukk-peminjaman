@@ -129,60 +129,60 @@ class DatabaseSeeder extends Seeder
 
         $alatData = [
             // Alat Laboratorium IPA (kategori 0)
-            ['kategori_idx' => 0, 'nama_alat' => 'Mikroskop Binokuler', 'deskripsi' => 'Mikroskop binokuler untuk pengamatan sel dan jaringan dengan perbesaran hingga 1000x.', 'stok' => 10],
-            ['kategori_idx' => 0, 'nama_alat' => 'Tabung Reaksi', 'deskripsi' => 'Tabung reaksi kaca borosilikat ukuran 15ml untuk eksperimen kimia.', 'stok' => 50],
-            ['kategori_idx' => 0, 'nama_alat' => 'Bunsen Burner', 'deskripsi' => 'Pembakar bunsen untuk pemanasan dalam eksperimen kimia.', 'stok' => 15],
-            ['kategori_idx' => 0, 'nama_alat' => 'Gelas Ukur 100ml', 'deskripsi' => 'Gelas ukur presisi untuk mengukur volume cairan.', 'stok' => 25],
-            ['kategori_idx' => 0, 'nama_alat' => 'Neraca Analitik', 'deskripsi' => 'Neraca digital dengan ketelitian 0.01 gram untuk mengukur massa.', 'stok' => 5],
-            ['kategori_idx' => 0, 'nama_alat' => 'Pipet Tetes', 'deskripsi' => 'Pipet tetes kaca untuk memindahkan cairan dalam jumlah kecil.', 'stok' => 40],
+            ['kategori_idx' => 0, 'nama_alat' => 'Mikroskop Binokuler', 'deskripsi' => 'Mikroskop binokuler untuk pengamatan sel dan jaringan dengan perbesaran hingga 1000x.', 'stok' => 10, 'gambar' => 'alat/mikroskop-binokuler.jpg'],
+            ['kategori_idx' => 0, 'nama_alat' => 'Tabung Reaksi', 'deskripsi' => 'Tabung reaksi kaca borosilikat ukuran 15ml untuk eksperimen kimia.', 'stok' => 50, 'gambar' => 'alat/tabung-reaksi.jpg'],
+            ['kategori_idx' => 0, 'nama_alat' => 'Bunsen Burner', 'deskripsi' => 'Pembakar bunsen untuk pemanasan dalam eksperimen kimia.', 'stok' => 15, 'gambar' => 'alat/bunsen-burner.jpg'],
+            ['kategori_idx' => 0, 'nama_alat' => 'Gelas Ukur 100ml', 'deskripsi' => 'Gelas ukur presisi untuk mengukur volume cairan.', 'stok' => 25, 'gambar' => 'alat/gelas-ukur-100ml.jpg'],
+            ['kategori_idx' => 0, 'nama_alat' => 'Neraca Analitik', 'deskripsi' => 'Neraca digital dengan ketelitian 0.01 gram untuk mengukur massa.', 'stok' => 5, 'gambar' => 'alat/neraca-analitik.jpg'],
+            ['kategori_idx' => 0, 'nama_alat' => 'Pipet Tetes', 'deskripsi' => 'Pipet tetes kaca untuk memindahkan cairan dalam jumlah kecil.', 'stok' => 40, 'gambar' => 'alat/pipet-tetes.jpg'],
 
             // Alat Laboratorium Komputer (kategori 1)
-            ['kategori_idx' => 1, 'nama_alat' => 'Laptop ASUS VivoBook', 'deskripsi' => 'Laptop ASUS VivoBook 14 inch, Intel Core i5, RAM 8GB untuk kegiatan belajar.', 'stok' => 20],
-            ['kategori_idx' => 1, 'nama_alat' => 'Mouse Wireless Logitech', 'deskripsi' => 'Mouse wireless Logitech M331 silent click untuk lab komputer.', 'stok' => 30],
-            ['kategori_idx' => 1, 'nama_alat' => 'Keyboard Mechanical', 'deskripsi' => 'Keyboard mechanical RGB untuk kegiatan programming dan typing.', 'stok' => 15],
-            ['kategori_idx' => 1, 'nama_alat' => 'USB Flash Drive 32GB', 'deskripsi' => 'Flash drive USB 3.0 kapasitas 32GB untuk penyimpanan data.', 'stok' => 40],
-            ['kategori_idx' => 1, 'nama_alat' => 'Kabel LAN Cat6', 'deskripsi' => 'Kabel LAN kategori 6 untuk koneksi jaringan komputer.', 'stok' => 20],
+            ['kategori_idx' => 1, 'nama_alat' => 'Laptop ASUS VivoBook', 'deskripsi' => 'Laptop ASUS VivoBook 14 inch, Intel Core i5, RAM 8GB untuk kegiatan belajar.', 'stok' => 20, 'gambar' => 'alat/laptop-asus-vivobook.png'],
+            ['kategori_idx' => 1, 'nama_alat' => 'Mouse Wireless Logitech', 'deskripsi' => 'Mouse wireless Logitech M331 silent click untuk lab komputer.', 'stok' => 30, 'gambar' => 'alat/mouse-wireless-logitech.jpg'],
+            ['kategori_idx' => 1, 'nama_alat' => 'Keyboard Mechanical', 'deskripsi' => 'Keyboard mechanical RGB untuk kegiatan programming dan typing.', 'stok' => 15, 'gambar' => 'alat/keyboard-mechanical.jpg'],
+            ['kategori_idx' => 1, 'nama_alat' => 'USB Flash Drive 32GB', 'deskripsi' => 'Flash drive USB 3.0 kapasitas 32GB untuk penyimpanan data.', 'stok' => 40, 'gambar' => 'alat/usb-flash-drive-32gb.jpg'],
+            ['kategori_idx' => 1, 'nama_alat' => 'Kabel LAN Cat6', 'deskripsi' => 'Kabel LAN kategori 6 untuk koneksi jaringan komputer.', 'stok' => 20, 'gambar' => 'alat/kabel-lan-cat6.jpg'],
 
             // Alat Olahraga (kategori 2)
-            ['kategori_idx' => 2, 'nama_alat' => 'Bola Basket Molten', 'deskripsi' => 'Bola basket Molten GG7X official size 7 untuk pertandingan resmi.', 'stok' => 8],
-            ['kategori_idx' => 2, 'nama_alat' => 'Bola Voli Mikasa', 'deskripsi' => 'Bola voli Mikasa MVA200 untuk latihan dan pertandingan.', 'stok' => 10],
-            ['kategori_idx' => 2, 'nama_alat' => 'Raket Badminton Yonex', 'deskripsi' => 'Raket badminton Yonex Astrox untuk latihan club badminton.', 'stok' => 12],
-            ['kategori_idx' => 2, 'nama_alat' => 'Net Badminton', 'deskripsi' => 'Net badminton standar pertandingan dengan tiang penyangga.', 'stok' => 3],
-            ['kategori_idx' => 2, 'nama_alat' => 'Matras Senam', 'deskripsi' => 'Matras senam tebal 5cm ukuran 200x100cm untuk kegiatan senam.', 'stok' => 15],
-            ['kategori_idx' => 2, 'nama_alat' => 'Stopwatch Digital', 'deskripsi' => 'Stopwatch digital untuk mengukur waktu dalam kegiatan olahraga.', 'stok' => 10],
+            ['kategori_idx' => 2, 'nama_alat' => 'Bola Basket Molten', 'deskripsi' => 'Bola basket Molten GG7X official size 7 untuk pertandingan resmi.', 'stok' => 8, 'gambar' => 'alat/bola-basket-molten.jpg'],
+            ['kategori_idx' => 2, 'nama_alat' => 'Bola Voli Mikasa', 'deskripsi' => 'Bola voli Mikasa MVA200 untuk latihan dan pertandingan.', 'stok' => 10, 'gambar' => 'alat/bola-voli-mikasa.jpg'],
+            ['kategori_idx' => 2, 'nama_alat' => 'Raket Badminton Yonex', 'deskripsi' => 'Raket badminton Yonex Astrox untuk latihan club badminton.', 'stok' => 12, 'gambar' => 'alat/raket-badminton-yonex.jpg'],
+            ['kategori_idx' => 2, 'nama_alat' => 'Net Badminton', 'deskripsi' => 'Net badminton standar pertandingan dengan tiang penyangga.', 'stok' => 3, 'gambar' => 'alat/net-badminton.jpg'],
+            ['kategori_idx' => 2, 'nama_alat' => 'Matras Senam', 'deskripsi' => 'Matras senam tebal 5cm ukuran 200x100cm untuk kegiatan senam.', 'stok' => 15, 'gambar' => 'alat/matras-senam.jpg'],
+            ['kategori_idx' => 2, 'nama_alat' => 'Stopwatch Digital', 'deskripsi' => 'Stopwatch digital untuk mengukur waktu dalam kegiatan olahraga.', 'stok' => 10, 'gambar' => 'alat/stopwatch-digital.jpg'],
 
             // Alat Musik (kategori 3)
-            ['kategori_idx' => 3, 'nama_alat' => 'Gitar Akustik Yamaha', 'deskripsi' => 'Gitar akustik Yamaha C315 untuk latihan musik dan pertunjukan.', 'stok' => 8],
-            ['kategori_idx' => 3, 'nama_alat' => 'Keyboard Yamaha PSR', 'deskripsi' => 'Keyboard Yamaha PSR-E373 61 keys untuk pelajaran musik.', 'stok' => 4],
-            ['kategori_idx' => 3, 'nama_alat' => 'Drum Pad Alesis', 'deskripsi' => 'Drum pad electronic Alesis untuk latihan drum tanpa suara keras.', 'stok' => 3],
-            ['kategori_idx' => 3, 'nama_alat' => 'Biola 4/4', 'deskripsi' => 'Biola ukuran penuh 4/4 untuk pelajaran dan latihan orkestra.', 'stok' => 6],
-            ['kategori_idx' => 3, 'nama_alat' => 'Seruling Bambu', 'deskripsi' => 'Seruling bambu tradisional untuk pelajaran seni budaya.', 'stok' => 20],
+            ['kategori_idx' => 3, 'nama_alat' => 'Gitar Akustik Yamaha', 'deskripsi' => 'Gitar akustik Yamaha C315 untuk latihan musik dan pertunjukan.', 'stok' => 8, 'gambar' => 'alat/gitar-akustik-yamaha.jpg'],
+            ['kategori_idx' => 3, 'nama_alat' => 'Keyboard Yamaha PSR', 'deskripsi' => 'Keyboard Yamaha PSR-E373 61 keys untuk pelajaran musik.', 'stok' => 4, 'gambar' => 'alat/keyboard-yamaha-psr.jpg'],
+            ['kategori_idx' => 3, 'nama_alat' => 'Drum Pad Alesis', 'deskripsi' => 'Drum pad electronic Alesis untuk latihan drum tanpa suara keras.', 'stok' => 3, 'gambar' => 'alat/drum-pad-alesis.jpg'],
+            ['kategori_idx' => 3, 'nama_alat' => 'Biola 4/4', 'deskripsi' => 'Biola ukuran penuh 4/4 untuk pelajaran dan latihan orkestra.', 'stok' => 6, 'gambar' => 'alat/biola.jpg'],
+            ['kategori_idx' => 3, 'nama_alat' => 'Seruling Bambu', 'deskripsi' => 'Seruling bambu tradisional untuk pelajaran seni budaya.', 'stok' => 20, 'gambar' => 'alat/seruling-bambu.jpg'],
 
             // Alat Peraga Matematika (kategori 4)
-            ['kategori_idx' => 4, 'nama_alat' => 'Jangka Sorong Digital', 'deskripsi' => 'Jangka sorong digital dengan ketelitian 0.01mm untuk praktikum fisika.', 'stok' => 15],
-            ['kategori_idx' => 4, 'nama_alat' => 'Model Bangun Ruang', 'deskripsi' => 'Set model bangun ruang transparan (kubus, balok, kerucut, limas, bola).', 'stok' => 10],
-            ['kategori_idx' => 4, 'nama_alat' => 'Penggaris Segitiga Set', 'deskripsi' => 'Set penggaris segitiga 30cm untuk menggambar geometri di papan tulis.', 'stok' => 20],
-            ['kategori_idx' => 4, 'nama_alat' => 'Kalkulator Scientific', 'deskripsi' => 'Kalkulator scientific Casio FX-991ID Plus untuk perhitungan matematika.', 'stok' => 25],
+            ['kategori_idx' => 4, 'nama_alat' => 'Jangka Sorong Digital', 'deskripsi' => 'Jangka sorong digital dengan ketelitian 0.01mm untuk praktikum fisika.', 'stok' => 15, 'gambar' => 'alat/jangka-sorong-digital.jpg'],
+            ['kategori_idx' => 4, 'nama_alat' => 'Model Bangun Ruang', 'deskripsi' => 'Set model bangun ruang transparan (kubus, balok, kerucut, limas, bola).', 'stok' => 10, 'gambar' => 'alat/model-bangun-ruang.jpg'],
+            ['kategori_idx' => 4, 'nama_alat' => 'Penggaris Segitiga Set', 'deskripsi' => 'Set penggaris segitiga 30cm untuk menggambar geometri di papan tulis.', 'stok' => 20, 'gambar' => 'alat/penggaris-segitiga-set.jpg'],
+            ['kategori_idx' => 4, 'nama_alat' => 'Kalkulator Scientific', 'deskripsi' => 'Kalkulator scientific Casio FX-991ID Plus untuk perhitungan matematika.', 'stok' => 25, 'gambar' => 'alat/kalkulator-scientific.jpg'],
 
             // Alat Kebersihan (kategori 5)
-            ['kategori_idx' => 5, 'nama_alat' => 'Vacuum Cleaner Portable', 'deskripsi' => 'Vacuum cleaner portable untuk membersihkan ruang kelas dan lab.', 'stok' => 5],
-            ['kategori_idx' => 5, 'nama_alat' => 'Mesin Pel Lantai', 'deskripsi' => 'Mesin pel lantai otomatis untuk membersihkan lantai gedung sekolah.', 'stok' => 3],
-            ['kategori_idx' => 5, 'nama_alat' => 'Sprayer Disinfektan', 'deskripsi' => 'Sprayer elektrik untuk penyemprotan disinfektan di lingkungan sekolah.', 'stok' => 8],
+            ['kategori_idx' => 5, 'nama_alat' => 'Vacuum Cleaner Portable', 'deskripsi' => 'Vacuum cleaner portable untuk membersihkan ruang kelas dan lab.', 'stok' => 5, 'gambar' => 'alat/vacuum-cleaner-portable.jpg'],
+            ['kategori_idx' => 5, 'nama_alat' => 'Mesin Pel Lantai', 'deskripsi' => 'Mesin pel lantai otomatis untuk membersihkan lantai gedung sekolah.', 'stok' => 3, 'gambar' => 'alat/mesin-pel-lantai.jpg'],
+            ['kategori_idx' => 5, 'nama_alat' => 'Sprayer Disinfektan', 'deskripsi' => 'Sprayer elektrik untuk penyemprotan disinfektan di lingkungan sekolah.', 'stok' => 8, 'gambar' => 'alat/sprayer-disinfektan.jpg'],
 
             // Peralatan Kantor (kategori 6)
-            ['kategori_idx' => 6, 'nama_alat' => 'Proyektor Epson', 'deskripsi' => 'Proyektor Epson EB-X51 3800 lumens untuk presentasi di kelas.', 'stok' => 10],
-            ['kategori_idx' => 6, 'nama_alat' => 'Printer HP LaserJet', 'deskripsi' => 'Printer laser HP LaserJet Pro untuk mencetak dokumen sekolah.', 'stok' => 5],
-            ['kategori_idx' => 6, 'nama_alat' => 'Scanner Epson', 'deskripsi' => 'Scanner Epson Perfection V39 untuk scan dokumen dan foto.', 'stok' => 4],
-            ['kategori_idx' => 6, 'nama_alat' => 'Whiteboard Portable', 'deskripsi' => 'Whiteboard portable ukuran 120x80cm dengan tripod stand.', 'stok' => 8],
-            ['kategori_idx' => 6, 'nama_alat' => 'Laminator A3', 'deskripsi' => 'Mesin laminator ukuran A3 untuk melapisi dokumen penting.', 'stok' => 3],
+            ['kategori_idx' => 6, 'nama_alat' => 'Proyektor Epson', 'deskripsi' => 'Proyektor Epson EB-X51 3800 lumens untuk presentasi di kelas.', 'stok' => 10, 'gambar' => 'alat/proyektor-epson.jpg'],
+            ['kategori_idx' => 6, 'nama_alat' => 'Printer HP LaserJet', 'deskripsi' => 'Printer laser HP LaserJet Pro untuk mencetak dokumen sekolah.', 'stok' => 5, 'gambar' => 'alat/printer-hp-laserjet.png'],
+            ['kategori_idx' => 6, 'nama_alat' => 'Scanner Epson', 'deskripsi' => 'Scanner Epson Perfection V39 untuk scan dokumen dan foto.', 'stok' => 4, 'gambar' => 'alat/scanner-epson.jpg'],
+            ['kategori_idx' => 6, 'nama_alat' => 'Whiteboard Portable', 'deskripsi' => 'Whiteboard portable ukuran 120x80cm dengan tripod stand.', 'stok' => 8, 'gambar' => 'alat/whiteboard-portable.jpg'],
+            ['kategori_idx' => 6, 'nama_alat' => 'Laminator A3', 'deskripsi' => 'Mesin laminator ukuran A3 untuk melapisi dokumen penting.', 'stok' => 3, 'gambar' => 'alat/laminator-a3.jpg'],
 
             // Alat Elektronik (kategori 7)
-            ['kategori_idx' => 7, 'nama_alat' => 'Multimeter Digital', 'deskripsi' => 'Multimeter digital untuk mengukur tegangan, arus, dan resistansi.', 'stok' => 12],
-            ['kategori_idx' => 7, 'nama_alat' => 'Solder Station', 'deskripsi' => 'Solder station dengan pengaturan suhu untuk praktikum elektronika.', 'stok' => 8],
-            ['kategori_idx' => 7, 'nama_alat' => 'Breadboard Kit', 'deskripsi' => 'Breadboard kit lengkap dengan kabel jumper untuk rangkaian elektronik.', 'stok' => 20],
-            ['kategori_idx' => 7, 'nama_alat' => 'Arduino Uno R3', 'deskripsi' => 'Board Arduino Uno R3 untuk belajar microcontroller dan IoT.', 'stok' => 15],
-            ['kategori_idx' => 7, 'nama_alat' => 'Oscilloscope Digital', 'deskripsi' => 'Oscilloscope digital 2 channel untuk menganalisis sinyal elektronik.', 'stok' => 4],
-            ['kategori_idx' => 7, 'nama_alat' => 'Power Supply Variable', 'deskripsi' => 'Power supply variable 0-30V 5A untuk eksperimen elektronika.', 'stok' => 6],
+            ['kategori_idx' => 7, 'nama_alat' => 'Multimeter Digital', 'deskripsi' => 'Multimeter digital untuk mengukur tegangan, arus, dan resistansi.', 'stok' => 12, 'gambar' => 'alat/multimeter-digital.jpg'],
+            ['kategori_idx' => 7, 'nama_alat' => 'Solder Station', 'deskripsi' => 'Solder station dengan pengaturan suhu untuk praktikum elektronika.', 'stok' => 8, 'gambar' => 'alat/solder-station.jpg'],
+            ['kategori_idx' => 7, 'nama_alat' => 'Breadboard Kit', 'deskripsi' => 'Breadboard kit lengkap dengan kabel jumper untuk rangkaian elektronik.', 'stok' => 20, 'gambar' => 'alat/breadboard-kit.jpg'],
+            ['kategori_idx' => 7, 'nama_alat' => 'Arduino Uno R3', 'deskripsi' => 'Board Arduino Uno R3 untuk belajar microcontroller dan IoT.', 'stok' => 15, 'gambar' => 'alat/arduino-uno-r3.jpg'],
+            ['kategori_idx' => 7, 'nama_alat' => 'Oscilloscope Digital', 'deskripsi' => 'Oscilloscope digital 2 channel untuk menganalisis sinyal elektronik.', 'stok' => 4, 'gambar' => 'alat/oscilloscope-digital.jpg'],
+            ['kategori_idx' => 7, 'nama_alat' => 'Power Supply Variable', 'deskripsi' => 'Power supply variable 0-30V 5A untuk eksperimen elektronika.', 'stok' => 6, 'gambar' => 'alat/power-supply-variable.jpg'],
         ];
 
         $alatList = [];
@@ -192,6 +192,7 @@ class DatabaseSeeder extends Seeder
                 'nama_alat' => $alat['nama_alat'],
                 'deskripsi' => $alat['deskripsi'],
                 'stok' => $alat['stok'],
+                'gambar' => $alat['gambar'] ?? null,
             ]);
         }
 
@@ -223,6 +224,7 @@ class DatabaseSeeder extends Seeder
             $peminjamanData[] = [
                 'pengguna_id' => $peminjam->id,
                 'alat_id' => $alat->id,
+                'jumlah' => rand(1, 3),
                 'tanggal_pinjam' => $tanggalPinjam->format('Y-m-d'),
                 'tanggal_wajib_kembali' => $tanggalWajibKembali->format('Y-m-d'),
                 'tanggal_kembali' => $tanggalKembali->format('Y-m-d'),
@@ -243,6 +245,7 @@ class DatabaseSeeder extends Seeder
             $peminjamanData[] = [
                 'pengguna_id' => $peminjam->id,
                 'alat_id' => $alat->id,
+                'jumlah' => rand(1, 3),
                 'tanggal_pinjam' => $tanggalPinjam->format('Y-m-d'),
                 'tanggal_wajib_kembali' => $tanggalWajibKembali->format('Y-m-d'),
                 'tanggal_kembali' => null,
@@ -263,6 +266,7 @@ class DatabaseSeeder extends Seeder
             $peminjamanData[] = [
                 'pengguna_id' => $peminjam->id,
                 'alat_id' => $alat->id,
+                'jumlah' => rand(1, 2),
                 'tanggal_pinjam' => $tanggalPinjam->format('Y-m-d'),
                 'tanggal_wajib_kembali' => $tanggalWajibKembali->format('Y-m-d'),
                 'tanggal_kembali' => null,
@@ -283,6 +287,7 @@ class DatabaseSeeder extends Seeder
             $peminjamanData[] = [
                 'pengguna_id' => $peminjam->id,
                 'alat_id' => $alat->id,
+                'jumlah' => rand(1, 2),
                 'tanggal_pinjam' => $tanggalPinjam->format('Y-m-d'),
                 'tanggal_wajib_kembali' => $tanggalWajibKembali->format('Y-m-d'),
                 'tanggal_kembali' => null,
@@ -303,6 +308,7 @@ class DatabaseSeeder extends Seeder
             $peminjamanData[] = [
                 'pengguna_id' => $peminjam->id,
                 'alat_id' => $alat->id,
+                'jumlah' => rand(1, 2),
                 'tanggal_pinjam' => $tanggalPinjam->format('Y-m-d'),
                 'tanggal_wajib_kembali' => $tanggalWajibKembali->format('Y-m-d'),
                 'tanggal_kembali' => null,
@@ -326,7 +332,7 @@ class DatabaseSeeder extends Seeder
         foreach ($peminjamanAktif as $p) {
             DB::table('alat')
                 ->where('id', $p->alat_id)
-                ->decrement('stok');
+                ->decrement('stok', $p->jumlah);
         }
 
         // =====================================================
