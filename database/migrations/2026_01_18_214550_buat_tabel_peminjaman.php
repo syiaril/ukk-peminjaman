@@ -31,6 +31,7 @@ return new class extends Migration
             $table->id();                                                           // Primary key (auto increment)
             $table->foreignId('pengguna_id')->constrained('pengguna');               // Foreign key ke tabel pengguna (peminjam)
             $table->foreignId('alat_id')->constrained('alat');                       // Foreign key ke tabel alat
+            $table->integer('jumlah')->default(1);                                    // Jumlah alat yang dipinjam (default: 1)
             $table->date('tanggal_pinjam');                                          // Tanggal mulai peminjaman
             $table->date('tanggal_wajib_kembali');                                   // Batas waktu pengembalian
             $table->date('tanggal_kembali')->nullable();                             // Tanggal alat dikembalikan (null jika belum)

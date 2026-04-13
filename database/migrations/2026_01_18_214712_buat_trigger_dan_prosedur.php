@@ -48,7 +48,7 @@ return new class extends Migration
             FOR EACH ROW
             BEGIN
                 IF NEW.status = "disetujui" AND OLD.status != "disetujui" THEN
-                    UPDATE alat SET stok = stok - 1 WHERE id = NEW.alat_id;
+                    UPDATE alat SET stok = stok - NEW.jumlah WHERE id = NEW.alat_id;
                 END IF;
             END
         ');
@@ -65,7 +65,7 @@ return new class extends Migration
             FOR EACH ROW
             BEGIN
                 IF NEW.status = "dikembalikan" AND OLD.status != "dikembalikan" THEN
-                    UPDATE alat SET stok = stok + 1 WHERE id = NEW.alat_id;
+                    UPDATE alat SET stok = stok + NEW.jumlah WHERE id = NEW.alat_id;
                 END IF;
             END
         ');
