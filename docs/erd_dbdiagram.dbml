@@ -1,0 +1,88 @@
+// ============================================================
+// ERD - Aplikasi Peminjaman Alat Sekolah
+// Paste script ini ke https://dbdiagram.io/d
+// ============================================================
+
+Table pengguna {
+  id bigint [pk, increment, note: 'Primary key']
+  nama varchar [not null, note: 'Nama lengkap pengguna']
+  email varchar [unique, not null, note: 'Email unik untuk login']
+  email_verified_at timestamp [null, note: 'Waktu verifikasi email']
+  kata_sandi varchar [not null, note: 'Password yang di-hash (bcrypt)']
+  peran enum('admin','petugas','peminjam') [default: 'peminjam', note: 'Peran pengguna dalam sistem']
+  remember_token varchar [null, note: 'Token remember me']
+  created_at timestamp [note: 'Waktu data dibuat']
+  updated_at timestamp [note: 'Waktu data diupdate']
+
+  Note: 'Menyimpan data semua pengguna yang bisa login ke sistem (Admin, Petugas, Peminjam)'
+}
+
+Table kategori {
+  id bigint [pk, increment, note: 'Primary key']
+  nama_kategori varchar [not null, note: 'Nama kategori alat (contoh: Alat Lab IPA)']
+  created_at timestamp [note: 'Waktu data dibuat']
+  updated_at timestamp [note: 'Waktu data diupdate']
+
+  Note: 'Menyimpan daftar kategori/pengelompokan alat sekolah'
+}
+
+Table alat {
+  id bigint [pk, increment, note: 'Primary key']
+  kategori_id bigint [not null, ref: > kategori.id, note: 'FK ke tabel kategori']
+  nama_alat varchar [not null, note: 'Nama alat (contoh: Mikroskop Binokuler)']
+  deskripsi text [null, note: 'Deskripsi/keterangan alat']
+  stok int [not null, note: 'Jumlah stok tersedia (dikelola trigger)']
+  gambar varchar [null, note: 'Path file gambar alat']
+  created_at timestamp [note: 'Waktu data dibuat']
+  updated_at timestamp [note: 'Waktu data diupdate']
+
+  Note: 'Menyimpan data alat sekolah yang bisa dipinjam'
+}
+
+Table peminjaman {
+  id bigint [pk, increment, note: 'Primary key']
+  pengguna_id bigint [not null, ref: > pengguna.id, note: 'FK ke tabel pengguna (peminjam)']
+  alat_id bigint [not null, ref: > alat.id, note: 'FK ke tabel alat']
+  jumlah int [not null, default: 1, note: 'Jumlah alat yang dipinjam']
+  tanggal_pinjam date [not null, note: 'Tanggal mulai peminjaman']
+  tanggal_wajib_kembali date [not null, note: 'Batas waktu pengembalian']
+  tanggal_kembali date [null, note: 'Tanggal alat dikembalikan (null jika belum)']
+  status enum('diajukan','disetujui','sedang_dikembalikan','dikembalikan','ditolak') [default: 'diajukan', note: 'Status peminjaman']
+  denda decimal(10,2) [default: 0, note: 'Denda keterlambatan (Rp 5.000/hari)']
+  created_at timestamp [note: 'Waktu data dibuat']
+  updated_at timestamp [note: 'Waktu data diupdate']
+
+  Note: 'Mencatat transaksi peminjaman alat. Alur: diajukan → disetujui → sedang_dikembalikan → dikembalikan / ditolak'
+}
+
+Table log_aktivitas {
+  id bigint [pk, increment, note: 'Primary key']
+  pengguna_id bigint [not null, ref: > pengguna.id, note: 'FK ke tabel pengguna (cascade delete)']
+  aksi varchar [not null, note: 'Jenis aksi (contoh: Login, Setujui Peminjaman)']
+  deskripsi text [null, note: 'Detail deskripsi aksi']
+  created_at timestamp [note: 'Waktu data dibuat']
+  updated_at timestamp [note: 'Waktu data diupdate']
+
+  Note: 'Audit trail - mencatat riwayat semua aktivitas penting di sistem'
+}
+
+// ============================================================
+// CATATAN DATABASE LOGIC:
+// 
+// TRIGGER 1: kurangi_stok_setelah_disetujui
+//   → Saat peminjaman.status berubah ke 'disetujui',
+//     stok alat dikurangi sesuai jumlah peminjaman
+//
+// TRIGGER 2: tambah_stok_setelah_dikembalikan
+//   → Saat peminjaman.status berubah ke 'dikembalikan',
+//     stok alat ditambah kembali sesuai jumlah peminjaman
+//
+// FUNCTION: hitung_denda(tanggal_wajib, tanggal_kembali)
+//   → Menghitung denda Rp 5.000 per hari keterlambatan
+//
+// STORED PROCEDURE: proses_persetujuan_peminjaman(id_peminjaman, id_petugas)
+//   → Update status + catat log (COMMIT/ROLLBACK)
+//
+// STORED PROCEDURE: proses_pengembalian(id_peminjaman, id_petugas)
+//   → Update status + hitung denda + catat log (COMMIT/ROLLBACK)
+// ============================================================
